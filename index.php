@@ -10,7 +10,7 @@ include 'header.html';
           </div>
           <div class="form-group">
             <h3>Senha</h3>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Senha">
+            <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha">
           </div>
             <button type="submit" class="btn btn-primary">Logar</button>
         </form>
