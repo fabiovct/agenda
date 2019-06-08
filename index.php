@@ -1,5 +1,8 @@
 <?php
+//$page = $_GET['page'];
+//include "$page.php";
 include 'header.html';
+//Rotas::get_pagina();
 ?>
 <body>
     <div class="container  mt-4 col-4">    
@@ -18,5 +21,6 @@ include 'header.html';
 </body>
 
 <?php
+
 include 'footer.html';
 ?>
