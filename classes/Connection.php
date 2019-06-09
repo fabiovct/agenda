@@ -52,4 +52,36 @@ class Connection {
     
             }
         }
+        
+        public function listar_contatos()
+        {
+            $obj = new Connection();
+            $link = $obj->connection_db();
+            $select_contatos = $link->prepare("SELECT * FROM $this->tabela_contatos where nome_contato LIKE :nome_contato ORDER BY nome_contato ");
+            $select_contatos->bindValue(":nome_contato", $_POST['nome_contato']."%");       
+            $select_contatos->execute();
+            while($linha = $select_contatos->fetch(PDO::FETCH_ASSOC))
+            {
+            $this->id_contato = utf8_encode($linha['id_contato']);
+            $this->nome_contato = utf8_encode($linha['nome_contato']);
+            $this->email_contato = utf8_encode($linha['email_contato']);
+            $this->telefone_contato = utf8_encode($linha['telefone_contato']);
+            
+            ?>
+            
+            <tr>
+                 <td hidden><?php echo $linha['id_contato'];  ?></td>
+                 <td><?php echo $linha['nome_contato'];  ?></td>
+                 <td><?php echo $linha['email_contato'];  ?></td>
+                 <td><?php echo $linha['telefone_contato'];  ?></td>
+                 
+             </tr>
+
+            <?php
+            
+            
+            
+            }
+            
+        }
     }
