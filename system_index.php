@@ -59,9 +59,7 @@ $link = $obj->consulta_dados_usuario();
 <?php
         }
 if(isset($_POST['nome_contato'])){
-//       $nome_contato = ($_POST['nome_contato']);
-        
-        
+//       $nome_contato = ($_POST['nome_contato']);       
         
 ?>
 

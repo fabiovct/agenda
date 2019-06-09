@@ -75,13 +75,23 @@ class Connection {
                  <td><?php echo $linha['email_contato'];  ?></td>
                  <td><?php echo $linha['telefone_contato'];  ?></td>
                  
-             </tr>
+            </tr>
 
-            <?php
+            <?php                        
             
+            }           
+        }
+        
+        public function insert_contatos(){
             
+            $obj = new Connection();
+            $link = $obj->connection_db();
+            $insert_contatos = $link->prepare("INSERT INTO $this->tabela_contatos (nome_contato, email_contato, telefone_contato) VALUES ( :nome, :email, :telefone )");
+            $insert_contatos->bindValue(":nome", $_POST['nome_contato']);
+            $insert_contatos->bindValue(":email", $_POST['email_contato']);
+            $insert_contatos->bindValue(":telefone", $_POST['telefone_contato']);
+            $insert_contatos->execute();
             
-            }
             
         }
     }
