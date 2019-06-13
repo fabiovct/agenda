@@ -24,7 +24,7 @@ class Connection {
                 $_SESSION['id_user'] = $usuario['id'];
                 $_SESSION['nivel_user'] = $usuario['nivel'];
             }           
-            header('location:system_index.php');
+            header('location:menu.php');
             }else{
                 header('location:index.php');
             }
@@ -74,7 +74,8 @@ class Connection {
                  <td><?php echo $linha['nome_contato'];  ?></td>
                  <td><?php echo $linha['email_contato'];  ?></td>
                  <td><?php echo $linha['telefone_contato'];  ?></td>
-                 
+                 <td><a href="edit_contatos.php?editar=<?php echo $linha['id_contato']; ?>"><h5 style="font-size: 15px; "><strong>Editar</strong></h5></a></td>
+                 <td><a href="delete_produtos.php?id_produto=<?php echo $id_produtos; ?>"><h5 style="font-size: 15px; "><strong>Excluir</strong></h5></a></td>               
             </tr>
 
             <?php                        
@@ -94,4 +95,36 @@ class Connection {
             
             
         }
+        
+        public function select_contato(){
+            $obj = new Connection();
+            $link = $obj->connection_db();
+            $select_contatos = $link->prepare("SELECT * FROM $this->tabela_contatos where id_contato = :id_contato ");
+            $select_contatos->bindValue(":id_contato", $_GET['editar']);       
+            $select_contatos->execute();
+            while($linha = $select_contatos->fetch(PDO::FETCH_ASSOC))
+            {
+            $this->id_contato = utf8_encode($linha['id_contato']);
+            $this->nome_contato = utf8_encode($linha['nome_contato']);
+            $this->email_contato = utf8_encode($linha['email_contato']);
+            $this->telefone_contato = utf8_encode($linha['telefone_contato']);
+            }
+        }
+        
+        public function update_contatos(){
+            
+            $obj = new Connection();
+            $link = $obj->connection_db();
+           $id_contato = $_POST['id_contato'];
+           $nome_contato = $_POST['nome_contato'];
+           $email_contato = $_POST['email_contato'];
+           $telefone_contato = $_POST['telefone_contato'];
+            $update_contatos = $link->prepare("UPDATE $this->tabela_contatos SET id_contato = :id_contato , nome_contato = :nome_contato , email_contato = :email_contato , telefone_contato = :telefone_contato   WHERE  id_contato = :id_contato");
+            $update_contatos->bindValue(":id_contato", $id_contato); 
+            $update_contatos->bindValue(":nome_contato", $nome_contato); 
+            $update_contatos->bindValue(":email_contato", $email_contato); 
+            $update_contatos->bindValue(":telefone_contato", $telefone_contato); 
+            $update_contatos->execute();
+        }
+        
     }

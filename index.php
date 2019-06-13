@@ -5,7 +5,7 @@ include 'header.html';
 //Rotas::get_pagina();
 ?>
 <body>
-    <div class="container  mt-4 col-4">    
+    <div class="container  mt-4 col-md-4">    
         <form action='valida_usuario.php' method="POST">
           <div class="form-group">
               <h3>Login</h3>
