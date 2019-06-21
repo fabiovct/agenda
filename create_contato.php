@@ -1,7 +1,9 @@
 <?php
+
 include 'header.html';
 require_once('classes/Connection.php');
 session_start();
+if($_SESSION['nivel_user'] == 1){
 if(isset($_SESSION['id_user'])){
  ?>
 <body>
@@ -39,3 +41,6 @@ if(isset($_POST['nome_contato'])){
 }
 include 'footer.html';
 
+}else{
+   header('location:system_index.php');
+}

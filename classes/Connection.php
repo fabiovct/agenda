@@ -75,7 +75,7 @@ class Connection {
                  <td><?php echo $linha['email_contato'];  ?></td>
                  <td><?php echo $linha['telefone_contato'];  ?></td>
                  <td><a href="edit_contatos.php?editar=<?php echo $linha['id_contato']; ?>"><h5 style="font-size: 15px; "><strong>Editar</strong></h5></a></td>
-                 <td><a href="delete_produtos.php?id_produto=<?php echo $id_produtos; ?>"><h5 style="font-size: 15px; "><strong>Excluir</strong></h5></a></td>               
+                 <td><a href="delete_contato.php?id_contato=<?php echo $linha['id_contato']; ?>"><h5 style="font-size: 15px; "><strong>Excluir</strong></h5></a></td>               
             </tr>
 
             <?php                        
@@ -125,6 +125,14 @@ class Connection {
             $update_contatos->bindValue(":email_contato", $email_contato); 
             $update_contatos->bindValue(":telefone_contato", $telefone_contato); 
             $update_contatos->execute();
+        }
+        
+        public function delete_contato(){
+            $obj = new Connection();
+            $link = $obj->connection_db();
+            $delete_contatos = $link->prepare("DELETE FROM $this->tabela_contatos where id_contato = :id_contato ");
+            $delete_contatos->bindValue(":id_contato", $_GET['id_contato']);       
+            $delete_contatos->execute();
         }
         
     }

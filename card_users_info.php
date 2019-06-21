@@ -9,7 +9,7 @@
 <!--                   <a href="edit_user.php" class="btn btn-primary">Editar Dados</a>-->
                    <a href="logout.php" class="btn btn-primary mt-2">Logout</a>
                    <a href="system_index.php" class="btn btn-primary mt-2">Agenda</a>
-                   <a href="produtos.php" class="btn btn-primary mt-2">Produtos</a>
+                   <a href="index_produtos.php" class="btn btn-primary mt-2">Produtos</a>
 <!--                   <a href="menu.php" class="btn btn-primary mt-2">Menu Principal</a>-->
              </div>
          </div>  
